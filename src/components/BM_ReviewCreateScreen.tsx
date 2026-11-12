@@ -153,7 +153,9 @@ export const BM_ReviewCreateScreen: React.FC<BMReviewCreateProps> = ({
                   <span className="text-[10px] text-slate-400 block font-medium">Interest</span>
                   <span className="text-xs font-semibold text-slate-800">
                     {data.interestApplies
-                      ? `${data.interestRate}% (${data.interestType})`
+                      ? data.interestType === 'Fixed Amount'
+                        ? `₹${(data.interestRate || 0).toLocaleString()} (Fixed)`
+                        : `${data.interestRate}% (Percentage)`
                       : 'None (0%)'}
                   </span>
                 </div>

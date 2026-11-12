@@ -187,16 +187,22 @@ export const BM_LoanDetailsScreen: React.FC<BMLoanDetailsProps> = ({
                 </div>
               </div>
 
-              {/* Payment Proof Section */}
+              {/* Payment Proof Section matching Figma Image 1 */}
               <div className="flex flex-col gap-3 pt-1">
-                <div>
+                <div className="flex items-center justify-between">
                   <h3 className="text-xs font-bold text-slate-900 leading-tight">
                     Payment Proof
                   </h3>
-                  <p className="text-[11px] text-slate-500 font-normal leading-relaxed mt-1">
-                    For UPI, Bank Transfer, and Cheque payments, either a transaction ID or supporting proof is required.
-                  </p>
+                  {proofAdded && (
+                    <div className="flex items-center gap-1 text-emerald-600 font-bold text-[11px] animate-in fade-in duration-150">
+                      <CheckCircle2 className="w-3.5 h-3.5 stroke-[2.5]" />
+                      <span>Added</span>
+                    </div>
+                  )}
                 </div>
+                <p className="text-[11px] text-slate-500 font-normal leading-relaxed -mt-1.5">
+                  For UPI, Bank Transfer, and Cheque payments, either a transaction ID or supporting proof is required.
+                </p>
 
                 {/* Upload Proof Box */}
                 <div className="bg-white rounded-2xl border border-slate-200/90 p-4 shadow-2xs flex flex-col gap-3">
@@ -214,24 +220,36 @@ export const BM_LoanDetailsScreen: React.FC<BMLoanDetailsProps> = ({
                     </div>
                   </div>
 
-                  <label className="w-full border-2 border-dashed border-slate-200 hover:border-blue-400 bg-slate-50/50 hover:bg-blue-50/30 rounded-xl py-3 px-4 text-center cursor-pointer transition-all flex flex-col items-center justify-center">
-                    <input
-                      type="file"
-                      accept="image/png,image/jpeg,application/pdf"
-                      onChange={handleFileUpload}
-                      className="hidden"
-                    />
-                    <span className="text-[11px] font-medium text-slate-600">
-                      {uploadedFile ? (
-                        <span className="text-emerald-700 font-semibold flex items-center gap-1.5">
-                          <Check className="w-3.5 h-3.5 stroke-[3]" />
-                          <span>{uploadedFile}</span>
-                        </span>
-                      ) : (
-                        'Tap to upload • PNG, JPG or PDF'
-                      )}
-                    </span>
-                  </label>
+                  {uploadedFile ? (
+                    <div className="w-full bg-emerald-50/70 border border-emerald-200/80 rounded-xl px-3.5 py-2.5 flex items-center justify-between animate-in fade-in duration-150">
+                      <span className="text-xs font-semibold text-emerald-800 truncate">
+                        {uploadedFile}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          e.preventDefault();
+                          setUploadedFile(null);
+                        }}
+                        className="text-xs font-medium text-slate-500 hover:text-rose-600 cursor-pointer ml-2 transition-colors"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  ) : (
+                    <label className="w-full border-2 border-dashed border-slate-200 hover:border-blue-400 bg-slate-50/50 hover:bg-blue-50/30 rounded-xl py-3 px-4 text-center cursor-pointer transition-all flex flex-col items-center justify-center">
+                      <input
+                        type="file"
+                        accept="image/png,image/jpeg,application/pdf"
+                        onChange={handleFileUpload}
+                        className="hidden"
+                      />
+                      <span className="text-[11px] font-medium text-slate-600">
+                        Tap to upload • PNG, JPG or PDF
+                      </span>
+                    </label>
+                  )}
                 </div>
 
                 {/* Divider "or" */}
