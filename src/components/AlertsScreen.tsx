@@ -48,9 +48,9 @@ export const AlertsScreen: React.FC<AlertsScreenProps> = ({
     <div className="flex-1 flex flex-col bg-white overflow-y-auto no-scrollbar pb-8 select-none animate-in fade-in duration-200">
       {/* Top Header strictly matching Figma */}
       <div className="w-full bg-white border-b border-slate-100 sticky top-0 z-10">
-        <div className="max-w-4xl mx-auto px-6 pt-6 pb-3 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-3 flex items-center justify-between">
           <h1 className="text-[20px] font-bold text-slate-900 tracking-tight leading-snug">
-            Alerts
+            Alerts & Notifications
           </h1>
           <div className="w-5 h-5 rounded-full bg-rose-600 text-white text-[11px] font-bold flex items-center justify-center">
             {actionCount}
@@ -58,7 +58,7 @@ export const AlertsScreen: React.FC<AlertsScreenProps> = ({
         </div>
       </div>
 
-      <div className="w-full max-w-4xl mx-auto px-6 flex flex-col gap-6 pt-4 pb-12 flex-1">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-6 pt-4 pb-12 flex-1">
         {/* ========================================================= */}
         {/* SECTION 1: ACTION REQUIRED                                 */}
         {/* ========================================================= */}
@@ -68,6 +68,8 @@ export const AlertsScreen: React.FC<AlertsScreenProps> = ({
             <AlertTriangle className="w-3.5 h-3.5 text-amber-500" strokeWidth={2.5} />
             <span>ACTION REQUIRED</span>
           </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
           {/* Card 1: Confirm Repayment */}
           <div className="bg-white rounded-2xl border border-amber-300 p-4 shadow-2xs flex flex-col gap-1.5 transition-all">
@@ -202,6 +204,7 @@ export const AlertsScreen: React.FC<AlertsScreenProps> = ({
             </button>
           </div>
         </div>
+      </div>
 
         {/* ========================================================= */}
         {/* SECTION 2: UPDATES                                         */}
@@ -213,75 +216,77 @@ export const AlertsScreen: React.FC<AlertsScreenProps> = ({
             <span>UPDATES</span>
           </div>
 
-          {/* Update 1: Vaada Activated */}
-          <div className="bg-white rounded-2xl border border-slate-200/90 p-4 shadow-2xs flex flex-col gap-1.5 transition-all">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-medium text-emerald-700 bg-emerald-50 border border-emerald-200/90 px-2 py-0.5 rounded-md leading-tight flex items-center gap-1">
-                <CheckCircle2 className="w-3 h-3 text-emerald-600 stroke-[2.5]" />
-                <span>Vaada Activated</span>
-              </span>
-              <span className="text-[11px] text-slate-400 font-normal">
-                3 hr ago
-              </span>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {/* Update 1: Vaada Activated */}
+            <div className="bg-white rounded-2xl border border-slate-200/90 p-4 shadow-2xs flex flex-col gap-1.5 transition-all">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-medium text-emerald-700 bg-emerald-50 border border-emerald-200/90 px-2 py-0.5 rounded-md leading-tight flex items-center gap-1">
+                  <CheckCircle2 className="w-3 h-3 text-emerald-600 stroke-[2.5]" />
+                  <span>Vaada Activated</span>
+                </span>
+                <span className="text-[11px] text-slate-400 font-normal">
+                  3 hr ago
+                </span>
+              </div>
+
+              <h3 className="text-sm font-bold text-slate-900 mt-1 leading-snug">
+                Advance Given
+              </h3>
+
+              <p className="text-[11px] text-slate-500 font-normal">
+                David Kim • 260515-11-0002
+              </p>
+
+              <button
+                onClick={() => handleOpenVaada('Advance Given', 'David Kim', '260515-11-0002')}
+                className="text-xs font-semibold text-blue-600 flex items-center gap-1 hover:underline cursor-pointer w-fit mt-2 pt-0.5"
+              >
+                <span>View Vaada</span>
+                <ChevronRight className="w-3.5 h-3.5 stroke-[2.5]" />
+              </button>
             </div>
 
-            <h3 className="text-sm font-bold text-slate-900 mt-1 leading-snug">
-              Advance Given
-            </h3>
+            {/* Update 2: Vaada Completed */}
+            <div className="bg-white rounded-2xl border border-slate-200/90 p-4 shadow-2xs flex flex-col gap-1.5 transition-all">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-medium text-blue-700 bg-blue-50 border border-blue-200/90 px-2 py-0.5 rounded-md leading-tight flex items-center gap-1">
+                  <CheckCircle2 className="w-3 h-3 text-blue-600 stroke-[2.5]" />
+                  <span>Vaada Completed</span>
+                </span>
+                <span className="text-[11px] text-slate-400 font-normal">
+                  1 day ago
+                </span>
+              </div>
 
-            <p className="text-[11px] text-slate-500 font-normal">
-              David Kim • 260515-11-0002
-            </p>
+              <h3 className="text-sm font-bold text-slate-900 mt-1 leading-snug">
+                Payment Promise
+              </h3>
 
-            <button
-              onClick={() => handleOpenVaada('Advance Given', 'David Kim', '260515-11-0002')}
-              className="text-xs font-semibold text-blue-600 flex items-center gap-1 hover:underline cursor-pointer w-fit mt-2 pt-0.5"
-            >
-              <span>View Vaada</span>
-              <ChevronRight className="w-3.5 h-3.5 stroke-[2.5]" />
-            </button>
-          </div>
-
-          {/* Update 2: Vaada Completed */}
-          <div className="bg-white rounded-2xl border border-slate-200/90 p-4 shadow-2xs flex flex-col gap-1.5 transition-all">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-medium text-blue-700 bg-blue-50 border border-blue-200/90 px-2 py-0.5 rounded-md leading-tight flex items-center gap-1">
-                <CheckCircle2 className="w-3 h-3 text-blue-600 stroke-[2.5]" />
-                <span>Vaada Completed</span>
-              </span>
-              <span className="text-[11px] text-slate-400 font-normal">
-                1 day ago
-              </span>
+              <p className="text-[11px] text-slate-500 font-normal">
+                Elena Rodriguez • 260510-11-0005
+              </p>
             </div>
 
-            <h3 className="text-sm font-bold text-slate-900 mt-1 leading-snug">
-              Payment Promise
-            </h3>
+            {/* Update 3: Vaada Rejected */}
+            <div className="bg-white rounded-2xl border border-slate-200/90 p-4 shadow-2xs flex flex-col gap-1.5 transition-all">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-medium text-rose-700 bg-rose-50 border border-rose-200/90 px-2 py-0.5 rounded-md leading-tight flex items-center gap-1">
+                  <AlertCircle className="w-3 h-3 text-rose-600 stroke-[2.5]" />
+                  <span>Vaada Rejected</span>
+                </span>
+                <span className="text-[11px] text-slate-400 font-normal">
+                  2 days ago
+                </span>
+              </div>
 
-            <p className="text-[11px] text-slate-500 font-normal">
-              Elena Rodriguez • 260510-11-0005
-            </p>
-          </div>
+              <h3 className="text-sm font-bold text-slate-900 mt-1 leading-snug">
+                Borrowed Money
+              </h3>
 
-          {/* Update 3: Vaada Rejected */}
-          <div className="bg-white rounded-2xl border border-slate-200/90 p-4 shadow-2xs flex flex-col gap-1.5 transition-all">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-medium text-rose-700 bg-rose-50 border border-rose-200/90 px-2 py-0.5 rounded-md leading-tight flex items-center gap-1">
-                <AlertCircle className="w-3 h-3 text-rose-600 stroke-[2.5]" />
-                <span>Vaada Rejected</span>
-              </span>
-              <span className="text-[11px] text-slate-400 font-normal">
-                2 days ago
-              </span>
+              <p className="text-[11px] text-slate-500 font-normal">
+                Michael Thompson • 260501-11-0004
+              </p>
             </div>
-
-            <h3 className="text-sm font-bold text-slate-900 mt-1 leading-snug">
-              Borrowed Money
-            </h3>
-
-            <p className="text-[11px] text-slate-500 font-normal">
-              Michael Thompson • 260501-11-0004
-            </p>
           </div>
         </div>
 
@@ -295,83 +300,85 @@ export const AlertsScreen: React.FC<AlertsScreenProps> = ({
             <span>REMINDERS</span>
           </div>
 
-          {/* Reminder 1: Due Tomorrow */}
-          <div className="bg-white rounded-2xl border border-slate-200/90 p-4 shadow-2xs flex flex-col gap-1.5 transition-all">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-medium text-amber-700 bg-amber-50 border border-amber-200/90 px-2 py-0.5 rounded-md leading-tight flex items-center gap-1">
-                <Clock className="w-3 h-3 text-amber-600 stroke-[2.5]" />
-                <span>Due Tomorrow</span>
-              </span>
-              <span className="text-[11px] text-slate-400 font-normal">
-                Today
-              </span>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {/* Reminder 1: Due Tomorrow */}
+            <div className="bg-white rounded-2xl border border-slate-200/90 p-4 shadow-2xs flex flex-col gap-1.5 transition-all">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-medium text-amber-700 bg-amber-50 border border-amber-200/90 px-2 py-0.5 rounded-md leading-tight flex items-center gap-1">
+                  <Clock className="w-3 h-3 text-amber-600 stroke-[2.5]" />
+                  <span>Due Tomorrow</span>
+                </span>
+                <span className="text-[11px] text-slate-400 font-normal">
+                  Today
+                </span>
+              </div>
+
+              <h3 className="text-sm font-bold text-slate-900 mt-1 leading-snug">
+                Borrowed Money
+              </h3>
+
+              <p className="text-[11px] text-slate-500 font-normal">
+                Aisha Patel • 260530-11-0006
+              </p>
+
+              <button
+                onClick={() => handleOpenVaada('Borrowed Money', 'Aisha Patel', '260530-11-0006')}
+                className="text-xs font-semibold text-blue-600 flex items-center gap-1 hover:underline cursor-pointer w-fit mt-2 pt-0.5"
+              >
+                <span>View Vaada</span>
+                <ChevronRight className="w-3.5 h-3.5 stroke-[2.5]" />
+              </button>
             </div>
 
-            <h3 className="text-sm font-bold text-slate-900 mt-1 leading-snug">
-              Borrowed Money
-            </h3>
+            {/* Reminder 2: Awaiting Counterparty Response */}
+            <div className="bg-white rounded-2xl border border-slate-200/90 p-4 shadow-2xs flex flex-col gap-1.5 transition-all">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-medium text-slate-700 bg-slate-100 border border-slate-200/90 px-2 py-0.5 rounded-md leading-tight flex items-center gap-1">
+                  <Clock className="w-3 h-3 text-slate-500 stroke-[2.5]" />
+                  <span>Awaiting Counterparty Response</span>
+                </span>
+                <span className="text-[11px] text-slate-400 font-normal">
+                  3 days
+                </span>
+              </div>
 
-            <p className="text-[11px] text-slate-500 font-normal">
-              Aisha Patel • 260530-11-0006
-            </p>
+              <h3 className="text-sm font-bold text-slate-900 mt-1 leading-snug">
+                Service Agreement
+              </h3>
 
-            <button
-              onClick={() => handleOpenVaada('Borrowed Money', 'Aisha Patel', '260530-11-0006')}
-              className="text-xs font-semibold text-blue-600 flex items-center gap-1 hover:underline cursor-pointer w-fit mt-2 pt-0.5"
-            >
-              <span>View Vaada</span>
-              <ChevronRight className="w-3.5 h-3.5 stroke-[2.5]" />
-            </button>
-          </div>
-
-          {/* Reminder 2: Awaiting Counterparty Response */}
-          <div className="bg-white rounded-2xl border border-slate-200/90 p-4 shadow-2xs flex flex-col gap-1.5 transition-all">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-medium text-slate-700 bg-slate-100 border border-slate-200/90 px-2 py-0.5 rounded-md leading-tight flex items-center gap-1">
-                <Clock className="w-3 h-3 text-slate-500 stroke-[2.5]" />
-                <span>Awaiting Counterparty Response</span>
-              </span>
-              <span className="text-[11px] text-slate-400 font-normal">
-                3 days
-              </span>
+              <p className="text-[11px] text-slate-500 font-normal">
+                Sarah Chen • 260525-11-0008
+              </p>
             </div>
 
-            <h3 className="text-sm font-bold text-slate-900 mt-1 leading-snug">
-              Service Agreement
-            </h3>
+            {/* Reminder 3: Overdue */}
+            <div className="bg-white rounded-2xl border border-slate-200/90 p-4 shadow-2xs flex flex-col gap-1.5 transition-all">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-medium text-rose-700 bg-rose-50 border border-rose-200/90 px-2 py-0.5 rounded-md leading-tight flex items-center gap-1">
+                  <AlertCircle className="w-3 h-3 text-rose-600 stroke-[2.5]" />
+                  <span>Overdue</span>
+                </span>
+                <span className="text-[11px] text-slate-400 font-normal">
+                  5 days
+                </span>
+              </div>
 
-            <p className="text-[11px] text-slate-500 font-normal">
-              Sarah Chen • 260525-11-0008
-            </p>
-          </div>
+              <h3 className="text-sm font-bold text-slate-900 mt-1 leading-snug">
+                Payment Promise
+              </h3>
 
-          {/* Reminder 3: Overdue */}
-          <div className="bg-white rounded-2xl border border-slate-200/90 p-4 shadow-2xs flex flex-col gap-1.5 transition-all">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-medium text-rose-700 bg-rose-50 border border-rose-200/90 px-2 py-0.5 rounded-md leading-tight flex items-center gap-1">
-                <AlertCircle className="w-3 h-3 text-rose-600 stroke-[2.5]" />
-                <span>Overdue</span>
-              </span>
-              <span className="text-[11px] text-slate-400 font-normal">
-                5 days
-              </span>
+              <p className="text-[11px] text-slate-500 font-normal">
+                Rahul Mehta • 260520-11-0009
+              </p>
+
+              <button
+                onClick={() => handleOpenVaada('Payment Promise', 'Rahul Mehta', '260520-11-0009')}
+                className="text-xs font-semibold text-blue-600 flex items-center gap-1 hover:underline cursor-pointer w-fit mt-2 pt-0.5"
+              >
+                <span>View Vaada</span>
+                <ChevronRight className="w-3.5 h-3.5 stroke-[2.5]" />
+              </button>
             </div>
-
-            <h3 className="text-sm font-bold text-slate-900 mt-1 leading-snug">
-              Payment Promise
-            </h3>
-
-            <p className="text-[11px] text-slate-500 font-normal">
-              Rahul Mehta • 260520-11-0009
-            </p>
-
-            <button
-              onClick={() => handleOpenVaada('Payment Promise', 'Rahul Mehta', '260520-11-0009')}
-              className="text-xs font-semibold text-blue-600 flex items-center gap-1 hover:underline cursor-pointer w-fit mt-2 pt-0.5"
-            >
-              <span>View Vaada</span>
-              <ChevronRight className="w-3.5 h-3.5 stroke-[2.5]" />
-            </button>
           </div>
         </div>
       </div>

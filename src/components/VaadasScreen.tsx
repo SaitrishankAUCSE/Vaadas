@@ -270,9 +270,9 @@ export const VaadasScreen: React.FC<VaadasScreenProps> = ({
     <div className="flex-1 flex flex-col bg-white overflow-hidden select-none animate-in fade-in duration-200 relative">
       {/* Top Header matching Figma strictly */}
       <div className="w-full border-b border-slate-100 bg-white z-10">
-        <div className="max-w-4xl mx-auto px-6 pt-6 pb-3 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-3 flex items-center justify-between">
           <h1 className="text-[20px] font-bold text-slate-900 tracking-tight leading-snug">
-            Vaadas
+            Vaadas Directory
           </h1>
           <div className="flex items-center gap-3 text-slate-500">
             {/* Search Button */}
@@ -311,7 +311,7 @@ export const VaadasScreen: React.FC<VaadasScreenProps> = ({
       {/* Optional Search Bar */}
       {showSearch && (
         <div className="w-full bg-white border-b border-slate-100 animate-in slide-in-from-top-1 duration-150">
-          <div className="max-w-4xl mx-auto px-6 pb-3 pt-2">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-3 pt-2">
             <div className="relative flex items-center">
               <input
                 type="text"
@@ -336,7 +336,7 @@ export const VaadasScreen: React.FC<VaadasScreenProps> = ({
 
       {/* Tabs Row matching Figma strictly */}
       <div className="w-full border-b border-slate-100 bg-white select-none">
-        <div className="max-w-4xl mx-auto px-6 flex items-center gap-7 text-xs font-semibold">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-7 text-xs font-semibold">
           {tabs.map((tab) => {
             const isActive = activeTab === tab.label;
             return (
@@ -367,7 +367,7 @@ export const VaadasScreen: React.FC<VaadasScreenProps> = ({
       {/* Active Filter Chips Bar (if filters are active) */}
       {activeFiltersCount > 0 && (
         <div className="w-full bg-slate-50/70 border-b border-slate-100">
-          <div className="max-w-4xl mx-auto px-6 py-2 flex items-center gap-2 overflow-x-auto no-scrollbar animate-in fade-in duration-150">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center gap-2 overflow-x-auto no-scrollbar animate-in fade-in duration-150">
             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider shrink-0">
               Active:
             </span>
@@ -423,8 +423,8 @@ export const VaadasScreen: React.FC<VaadasScreenProps> = ({
       )}
 
       {/* Vaada Cards Scrollable List */}
-      <div className="flex-1 overflow-y-auto no-scrollbar p-5 bg-white">
-        <div className="max-w-4xl mx-auto w-full flex flex-col gap-3.5">
+      <div className="flex-1 overflow-y-auto no-scrollbar p-5 sm:p-6 lg:p-8 bg-slate-50/50">
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {filteredVaadas.map((item) => (
           <div
             key={item.id}
@@ -505,7 +505,7 @@ export const VaadasScreen: React.FC<VaadasScreenProps> = ({
         ))}
 
         {filteredVaadas.length === 0 && (
-          <div className="text-center py-12 flex flex-col items-center justify-center gap-2">
+          <div className="col-span-full text-center py-16 flex flex-col items-center justify-center gap-2">
             <div className="w-10 h-10 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-400">
               <Search className="w-4 h-4" />
             </div>

@@ -16,7 +16,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({
   badgeCount = 0,
 }) => {
   return (
-    <div className="h-16 bg-white border-t border-slate-100 w-full shrink-0 select-none z-30">
+    <div className="h-16 bg-white border-t border-slate-100 w-full shrink-0 select-none z-30 md:hidden">
       <div className="max-w-xl mx-auto h-full flex items-center justify-around px-2 relative">
         {/* Home */}
       <button

@@ -79,7 +79,7 @@ export const CreateVaadaScreen: React.FC<CreateVaadaScreenProps> = ({ onBack, on
     <div className="flex-1 flex flex-col bg-white overflow-hidden select-none animate-in fade-in duration-200 justify-between">
       {/* Top Header matching Figma wireframe strictly */}
       <div className="w-full border-b border-slate-100 bg-white">
-        <div className="max-w-2xl mx-auto px-6 pt-6 pb-4 flex flex-col">
+        <div className="max-w-4xl mx-auto px-6 pt-6 pb-4 flex flex-col">
           {/* < Back button */}
           <button
             onClick={onBack}
@@ -97,14 +97,14 @@ export const CreateVaadaScreen: React.FC<CreateVaadaScreenProps> = ({ onBack, on
       </div>
 
       {/* 4 Category Selection Cards */}
-      <div className="w-full max-w-2xl mx-auto px-6 pt-6 pb-2 flex flex-col gap-3.5 flex-1">
+      <div className="w-full max-w-4xl mx-auto px-6 pt-6 pb-2 grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1 content-start">
         {categories.map((cat) => {
           const isSelected = selectedCategory === cat.id;
           return (
             <div
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id)}
-              className={`p-4 rounded-2xl border transition-all duration-150 cursor-pointer flex items-center gap-4 ${
+              className={`p-5 rounded-2xl border transition-all duration-150 cursor-pointer flex items-center gap-4 ${
                 isSelected
                   ? 'border-2 border-blue-600 bg-white shadow-2xs ring-2 ring-blue-100'
                   : 'border-slate-200/90 bg-white hover:border-slate-300 hover:bg-slate-50/50'
@@ -127,11 +127,11 @@ export const CreateVaadaScreen: React.FC<CreateVaadaScreenProps> = ({ onBack, on
 
       {/* Bottom Continue Action Button strictly matching Figma disabled/enabled state */}
       <div className="w-full border-t border-slate-100 bg-white">
-        <div className="max-w-2xl mx-auto px-6 pb-7 pt-4">
+        <div className="max-w-4xl mx-auto px-6 pb-7 pt-4 flex justify-end">
           <button
             onClick={handleContinue}
             disabled={!selectedCategory}
-            className={`w-full h-[48px] rounded-[16px] font-medium text-xs transition-all duration-200 flex items-center justify-center select-none ${
+            className={`w-full sm:w-auto sm:px-10 h-[48px] rounded-[16px] font-medium text-xs transition-all duration-200 flex items-center justify-center select-none ${
               selectedCategory
                 ? 'bg-blue-600 hover:bg-blue-700 active:scale-[0.99] text-white shadow-md shadow-blue-500/20 cursor-pointer font-semibold'
                 : 'bg-[#f1f3f6] text-[#94a3b8] cursor-not-allowed'

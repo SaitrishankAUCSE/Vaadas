@@ -10,6 +10,7 @@ import { AlertsScreen } from './components/AlertsScreen';
 import { ProfileScreen } from './components/ProfileScreen';
 import { EditProfileScreen } from './components/EditProfileScreen';
 import { BottomNav } from './components/BottomNav';
+import { DesktopNavbar } from './components/DesktopNavbar';
 import { VaadaTimelineModal } from './components/VaadaTimelineModal';
 import { CreateVaadaScreen } from './components/CreateVaadaScreen';
 import { BM_PartiesScreen } from './components/BM_PartiesScreen';
@@ -72,7 +73,7 @@ export const App: React.FC = () => {
   };
 
   const handleLogout = () => {
-    setCurrentScreen('home');
+    setCurrentScreen('login');
   };
 
   // Subscreen navigation handlers
@@ -335,6 +336,7 @@ export const App: React.FC = () => {
     setCurrentScreen('bm-active-overview');
   };
 
+  const isAuthScreen = ['splash', 'onboarding', 'login', 'otp'].includes(currentScreen);
   const showBottomNav = ['home', 'vaadas', 'alerts', 'profile'].includes(currentScreen);
   const actionCount = 4;
 
@@ -343,7 +345,18 @@ export const App: React.FC = () => {
       currentScreen={currentScreen}
       onNavigateScreen={(screen) => setCurrentScreen(screen)}
     >
-      <div className="flex-1 flex flex-col relative overflow-hidden bg-white">
+      <div className="flex-1 flex flex-col relative overflow-hidden bg-slate-50/40">
+        {/* Desktop Top Navigation Bar (Sticky on all authenticated views for screens >= 768px) */}
+        {!isAuthScreen && (
+          <DesktopNavbar
+            currentScreen={currentScreen}
+            onNavigate={(screen) => setCurrentScreen(screen)}
+            onOpenCreate={handleOpenCreateVaada}
+            badgeCount={actionCount}
+            userName={userName}
+            onLogout={handleLogout}
+          />
+        )}
         {/* Splash Screen */}
         {currentScreen === 'splash' && (
           <SplashScreen onTransitionComplete={handleSplashTransition} />
