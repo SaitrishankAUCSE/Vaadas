@@ -27,13 +27,15 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
   return (
     <div className="flex-1 flex flex-col bg-white overflow-y-auto no-scrollbar pb-8 select-none animate-in fade-in duration-200 relative">
       {/* Top Header */}
-      <div className="px-6 pt-6 pb-2 bg-white flex items-center justify-between sticky top-0 z-10">
-        <h1 className="text-[20px] font-bold text-slate-900 tracking-tight leading-snug">
-          Profile
-        </h1>
+      <div className="w-full bg-white border-b border-slate-100 sticky top-0 z-10">
+        <div className="max-w-4xl mx-auto px-6 pt-6 pb-2 flex items-center justify-between">
+          <h1 className="text-[20px] font-bold text-slate-900 tracking-tight leading-snug">
+            Profile
+          </h1>
+        </div>
       </div>
 
-      <div className="px-6 flex flex-col gap-5 pt-2">
+      <div className="w-full max-w-4xl mx-auto px-6 flex flex-col gap-5 pt-4 pb-12 flex-1">
         {/* User Profile Card Block strictly matching Figma */}
         <div className="flex items-center gap-4 pt-1">
           {/* Avatar circle */}

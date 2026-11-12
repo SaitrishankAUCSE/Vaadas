@@ -107,23 +107,25 @@ export const OtpScreen: React.FC<OtpScreenProps> = ({ phone, onVerify, onBack })
   return (
     <div className="flex-1 flex flex-col bg-white overflow-hidden select-none animate-in fade-in duration-200">
       {/* Top Header Bar matching Figma strictly: < OTP Verification ... (shield right) */}
-      <div className="flex items-center justify-between px-6 pt-5 pb-3 bg-white">
-        <button
-          onClick={onBack}
-          className="flex items-center gap-2 text-slate-900 hover:text-blue-600 transition-colors -ml-1 cursor-pointer"
-        >
-          <ChevronLeft className="w-5 h-5 text-slate-800" strokeWidth={2.2} />
-          <span className="text-sm font-bold text-slate-900 tracking-tight">OTP Verification</span>
-        </button>
+      <div className="w-full border-b border-slate-100 bg-white">
+        <div className="max-w-md mx-auto flex items-center justify-between px-6 pt-5 pb-3">
+          <button
+            onClick={onBack}
+            className="flex items-center gap-2 text-slate-900 hover:text-blue-600 transition-colors -ml-1 cursor-pointer"
+          >
+            <ChevronLeft className="w-5 h-5 text-slate-800" strokeWidth={2.2} />
+            <span className="text-sm font-bold text-slate-900 tracking-tight">OTP Verification</span>
+          </button>
 
-        {/* Small Shield Icon in circular light-blue badge on the far right */}
-        <div className="w-8 h-8 rounded-full bg-blue-50/70 border border-blue-100/60 flex items-center justify-center text-blue-600">
-          <Shield className="w-4 h-4" strokeWidth={2.2} />
+          {/* Small Shield Icon in circular light-blue badge on the far right */}
+          <div className="w-8 h-8 rounded-full bg-blue-50/70 border border-blue-100/60 flex items-center justify-center text-blue-600">
+            <Shield className="w-4 h-4" strokeWidth={2.2} />
+          </div>
         </div>
       </div>
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col justify-between px-6 pt-8 pb-7">
+      <div className="flex-1 w-full max-w-md mx-auto flex flex-col justify-between px-6 pt-8 pb-7">
         <div className="flex flex-col items-center text-center">
           {/* Blue Shield Icon inside Soft Circular Badge */}
           <div className="w-[62px] h-[62px] rounded-full bg-[#eff6ff] border border-blue-100 flex items-center justify-center mb-5 shadow-2xs">

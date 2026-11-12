@@ -27,63 +27,68 @@ export const LegalModal: React.FC<LegalModalProps> = ({
   return (
     <div className="absolute inset-0 z-50 bg-white flex flex-col overflow-hidden animate-in slide-in-from-bottom duration-200 select-none">
       {/* Native App Top Navigation Bar */}
-      <div className="px-5 pt-4 pb-3 border-b border-slate-100 flex items-center justify-between bg-white shrink-0 sticky top-0 z-10">
-        <button
-          onClick={onClose}
-          className="p-1 -ml-1 text-slate-700 hover:text-slate-900 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer flex items-center gap-1"
-          aria-label="Back"
-        >
-          <ChevronLeft className="w-5 h-5 text-slate-700" />
-          <span className="text-xs font-semibold text-slate-700">Back</span>
-        </button>
+      <div className="w-full border-b border-slate-100 bg-white shrink-0 sticky top-0 z-10">
+        <div className="max-w-3xl mx-auto px-5 pt-4 pb-3 flex items-center justify-between">
+          <button
+            onClick={onClose}
+            className="p-1 -ml-1 text-slate-700 hover:text-slate-900 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer flex items-center gap-1"
+            aria-label="Back"
+          >
+            <ChevronLeft className="w-5 h-5 text-slate-700" />
+            <span className="text-xs font-semibold text-slate-700">Back</span>
+          </button>
 
-        <div className="text-center">
-          <h1 className="text-sm font-bold text-slate-900 leading-tight">
-            {activeTab === 'terms' ? 'Terms of Service' : 'Privacy Policy'}
-          </h1>
-          <p className="text-[10px] text-slate-400 font-medium">Effective June 2026</p>
+          <div className="text-center">
+            <h1 className="text-sm font-bold text-slate-900 leading-tight">
+              {activeTab === 'terms' ? 'Terms of Service' : 'Privacy Policy'}
+            </h1>
+            <p className="text-[10px] text-slate-400 font-medium">Effective June 2026</p>
+          </div>
+
+          <button
+            onClick={onClose}
+            className="text-xs font-bold text-blue-600 hover:text-blue-700 px-2 py-1 rounded-lg hover:bg-blue-50 transition-colors cursor-pointer"
+          >
+            Done
+          </button>
         </div>
-
-        <button
-          onClick={onClose}
-          className="text-xs font-bold text-blue-600 hover:text-blue-700 px-2 py-1 rounded-lg hover:bg-blue-50 transition-colors cursor-pointer"
-        >
-          Done
-        </button>
       </div>
 
       {/* Segmented Control / Tab Switcher */}
-      <div className="px-5 py-2.5 bg-slate-50 border-b border-slate-100 shrink-0">
-        <div className="bg-slate-200/70 p-1 rounded-xl flex gap-1">
-          <button
-            type="button"
-            onClick={() => setActiveTab('terms')}
-            className={`flex-1 py-1.5 px-3 rounded-lg text-xs font-semibold transition-all cursor-pointer text-center flex items-center justify-center gap-1.5 ${
-              activeTab === 'terms'
-                ? 'bg-white text-slate-900 shadow-2xs'
-                : 'text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            <FileText className="w-3.5 h-3.5" />
-            <span>Terms of Service</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => setActiveTab('privacy')}
-            className={`flex-1 py-1.5 px-3 rounded-lg text-xs font-semibold transition-all cursor-pointer text-center flex items-center justify-center gap-1.5 ${
-              activeTab === 'privacy'
-                ? 'bg-white text-slate-900 shadow-2xs'
-                : 'text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            <Lock className="w-3.5 h-3.5" />
-            <span>Privacy Policy</span>
-          </button>
+      <div className="w-full bg-slate-50 border-b border-slate-100 shrink-0">
+        <div className="max-w-3xl mx-auto px-5 py-2.5">
+          <div className="bg-slate-200/70 p-1 rounded-xl flex gap-1">
+            <button
+              type="button"
+              onClick={() => setActiveTab('terms')}
+              className={`flex-1 py-1.5 px-3 rounded-lg text-xs font-semibold transition-all cursor-pointer text-center flex items-center justify-center gap-1.5 ${
+                activeTab === 'terms'
+                  ? 'bg-white text-slate-900 shadow-2xs'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <FileText className="w-3.5 h-3.5" />
+              <span>Terms of Service</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab('privacy')}
+              className={`flex-1 py-1.5 px-3 rounded-lg text-xs font-semibold transition-all cursor-pointer text-center flex items-center justify-center gap-1.5 ${
+                activeTab === 'privacy'
+                  ? 'bg-white text-slate-900 shadow-2xs'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <Lock className="w-3.5 h-3.5" />
+              <span>Privacy Policy</span>
+            </button>
+          </div>
         </div>
       </div>
 
       {/* Scrollable Document Content */}
-      <div className="flex-1 overflow-y-auto no-scrollbar p-6 text-xs text-slate-600 flex flex-col gap-5 leading-relaxed font-normal">
+      <div className="flex-1 overflow-y-auto no-scrollbar p-6 bg-white">
+        <div className="max-w-3xl mx-auto w-full text-xs text-slate-600 flex flex-col gap-5 leading-relaxed font-normal">
         {activeTab === 'terms' ? (
           <>
             {/* Scope Notice Banner */}
@@ -250,22 +255,25 @@ export const LegalModal: React.FC<LegalModalProps> = ({
             </div>
           </>
         )}
+        </div>
       </div>
 
       {/* Sticky Bottom Action Footer */}
-      <div className="px-6 py-4 bg-white border-t border-slate-100 flex items-center justify-between shrink-0">
-        <div className="flex items-center gap-1.5 text-[11px] text-slate-400 font-medium">
-          <Shield className="w-4 h-4 text-emerald-600" />
-          <span>Legally Verified Protocol</span>
-        </div>
+      <div className="w-full bg-white border-t border-slate-100 shrink-0">
+        <div className="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-1.5 text-[11px] text-slate-400 font-medium">
+            <Shield className="w-4 h-4 text-emerald-600" />
+            <span>Legally Verified Protocol</span>
+          </div>
 
-        <button
-          type="button"
-          onClick={onClose}
-          className="h-10 px-6 rounded-xl bg-slate-900 hover:bg-slate-800 active:scale-[0.99] text-white font-semibold text-xs transition-all shadow-sm cursor-pointer"
-        >
-          I Understand
-        </button>
+          <button
+            type="button"
+            onClick={onClose}
+            className="h-10 px-6 rounded-xl bg-slate-900 hover:bg-slate-800 active:scale-[0.99] text-white font-semibold text-xs transition-all shadow-sm cursor-pointer"
+          >
+            I Understand
+          </button>
+        </div>
       </div>
     </div>
   );

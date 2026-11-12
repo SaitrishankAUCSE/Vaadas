@@ -50,26 +50,28 @@ export const SA_PartiesScreen: React.FC<SAPartiesScreenProps> = ({ onBack, onCon
     <div className="flex-1 flex flex-col bg-white overflow-y-auto no-scrollbar select-none animate-in fade-in duration-200 justify-between pb-6">
       <div className="flex flex-col">
         {/* Top Header matching Figma strictly: < Service Agreement */}
-        <div className="px-6 pt-6 pb-2 bg-white flex flex-col">
-          <button
-            onClick={onBack}
-            className="flex items-center gap-1.5 text-slate-800 hover:text-blue-600 transition-colors cursor-pointer -ml-1 w-fit py-1"
-          >
-            <ChevronLeft className="w-4 h-4 text-slate-700" strokeWidth={2.5} />
-            <span className="text-xs font-semibold text-slate-700">Service Agreement</span>
-          </button>
+        <div className="w-full border-b border-slate-100 bg-white">
+          <div className="max-w-2xl mx-auto px-6 pt-6 pb-3 flex flex-col">
+            <button
+              onClick={onBack}
+              className="flex items-center gap-1.5 text-slate-800 hover:text-blue-600 transition-colors cursor-pointer -ml-1 w-fit py-1"
+            >
+              <ChevronLeft className="w-4 h-4 text-slate-700" strokeWidth={2.5} />
+              <span className="text-xs font-semibold text-slate-700">Service Agreement</span>
+            </button>
 
-          <h1 className="text-[20px] font-bold text-slate-900 tracking-tight leading-snug mt-3">
-            Parties
-          </h1>
+            <h1 className="text-[20px] font-bold text-slate-900 tracking-tight leading-snug mt-3">
+              Parties
+            </h1>
 
-          <p className="text-[13px] text-slate-600 font-normal leading-tight mt-3">
-            Who are you in this Agreement?
-          </p>
+            <p className="text-[13px] text-slate-600 font-normal leading-tight mt-3">
+              Who are you in this Agreement?
+            </p>
+          </div>
         </div>
 
         {/* Role Selection Cards Container */}
-        <div className="px-6 pt-3 flex flex-col gap-3">
+        <div className="w-full max-w-2xl mx-auto px-6 pt-3 flex flex-col gap-3">
           {/* Card 1: Client - Party A */}
           <div
             onClick={() => setSelectedRole('client')}
@@ -247,18 +249,20 @@ export const SA_PartiesScreen: React.FC<SAPartiesScreenProps> = ({ onBack, onCon
       </div>
 
       {/* Bottom Continue Button */}
-      <div className="px-6 pt-4 bg-white w-full">
-        <button
-          onClick={handleContinue}
-          disabled={!canContinue}
-          className={`w-full h-[48px] rounded-[16px] font-medium text-xs transition-all duration-200 flex items-center justify-center select-none ${
-            canContinue
-              ? 'bg-blue-600 hover:bg-blue-700 active:scale-[0.99] text-white shadow-md shadow-blue-500/20 cursor-pointer font-semibold'
-              : 'bg-[#f1f3f6] text-[#94a3b8] cursor-not-allowed'
-          }`}
-        >
-          Continue
-        </button>
+      <div className="w-full border-t border-slate-100 bg-white">
+        <div className="max-w-2xl mx-auto px-6 pt-4 pb-2">
+          <button
+            onClick={handleContinue}
+            disabled={!canContinue}
+            className={`w-full h-[48px] rounded-[16px] font-medium text-xs transition-all duration-200 flex items-center justify-center select-none ${
+              canContinue
+                ? 'bg-blue-600 hover:bg-blue-700 active:scale-[0.99] text-white shadow-md shadow-blue-500/20 cursor-pointer font-semibold'
+                : 'bg-[#f1f3f6] text-[#94a3b8] cursor-not-allowed'
+            }`}
+          >
+            Continue
+          </button>
+        </div>
       </div>
     </div>
   );

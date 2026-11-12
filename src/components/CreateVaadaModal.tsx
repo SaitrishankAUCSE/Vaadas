@@ -47,8 +47,8 @@ export const CreateVaadaModal: React.FC<CreateVaadaModalProps> = ({ isOpen, onCl
   };
 
   return (
-    <div className="absolute inset-0 bg-black/60 z-50 flex flex-col justify-end animate-in fade-in duration-200">
-      <div className="bg-white rounded-t-[32px] p-6 flex flex-col max-h-[90%] overflow-y-auto no-scrollbar shadow-2xl">
+    <div className="absolute inset-0 bg-black/60 z-50 flex flex-col justify-end sm:justify-center items-center animate-in fade-in duration-200 sm:p-4">
+      <div className="bg-white rounded-t-[32px] sm:rounded-2xl p-6 flex flex-col max-h-[90%] w-full max-w-lg overflow-y-auto no-scrollbar shadow-2xl">
         {/* Header */}
         <div className="flex items-center justify-between pb-3 border-b border-slate-100">
           <h2 className="text-base font-bold text-slate-900">Create New Vaada</h2>

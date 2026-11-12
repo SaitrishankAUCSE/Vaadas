@@ -51,21 +51,23 @@ export const EditProfileScreen: React.FC<EditProfileScreenProps> = ({
     <div className="flex-1 flex flex-col bg-white overflow-y-auto no-scrollbar pb-8 select-none animate-in fade-in duration-200 justify-between">
       <div className="flex flex-col">
         {/* Top Header strictly matching Figma: < Profile */}
-        <div className="px-6 pt-6 pb-2 bg-white flex flex-col">
-          <button
-            onClick={onBack}
-            className="flex items-center gap-1.5 text-slate-800 hover:text-blue-600 transition-colors cursor-pointer -ml-1 w-fit py-1"
-          >
-            <ChevronLeft className="w-4 h-4 text-slate-700" strokeWidth={2.5} />
-            <span className="text-xs font-semibold text-slate-700">Profile</span>
-          </button>
+        <div className="w-full border-b border-slate-100 bg-white">
+          <div className="max-w-2xl mx-auto px-6 pt-6 pb-3 flex flex-col">
+            <button
+              onClick={onBack}
+              className="flex items-center gap-1.5 text-slate-800 hover:text-blue-600 transition-colors cursor-pointer -ml-1 w-fit py-1"
+            >
+              <ChevronLeft className="w-4 h-4 text-slate-700" strokeWidth={2.5} />
+              <span className="text-xs font-semibold text-slate-700">Profile</span>
+            </button>
 
-          <h1 className="text-[20px] font-bold text-slate-900 tracking-tight leading-snug mt-2.5">
-            Personal Information
-          </h1>
+            <h1 className="text-[20px] font-bold text-slate-900 tracking-tight leading-snug mt-2.5">
+              Personal Information
+            </h1>
+          </div>
         </div>
 
-        <div className="px-6 flex flex-col gap-5 pt-2">
+        <div className="w-full max-w-2xl mx-auto px-6 flex flex-col gap-5 pt-4 pb-12 flex-1">
           {/* ========================================================= */}
           {/* SECTION 1: PERSONAL DETAILS                                 */}
           {/* ========================================================= */}

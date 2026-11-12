@@ -18,23 +18,26 @@ export const VaadaTimelineModal: React.FC<VaadaTimelineModalProps> = ({
   return (
     <div className="absolute inset-0 bg-white z-50 flex flex-col overflow-hidden animate-in slide-in-from-right duration-200">
       {/* Top Header */}
-      <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-white shrink-0">
-        <button
-          onClick={onClose}
-          className="p-1 -ml-1 text-slate-700 hover:text-slate-900 transition-colors"
-        >
-          <ArrowLeft className="w-5 h-5" />
-        </button>
-        <h1 className="text-sm font-bold text-slate-900">Vaada Timeline</h1>
-        <div className="flex items-center gap-2 text-slate-500">
-          <button className="p-1 hover:text-slate-700">
-            <Share2 className="w-4 h-4" />
+      <div className="w-full border-b border-slate-100 bg-white shrink-0">
+        <div className="max-w-3xl mx-auto flex items-center justify-between px-6 py-4">
+          <button
+            onClick={onClose}
+            className="p-1 -ml-1 text-slate-700 hover:text-slate-900 transition-colors cursor-pointer"
+          >
+            <ArrowLeft className="w-5 h-5" />
           </button>
+          <h1 className="text-sm font-bold text-slate-900">Vaada Timeline</h1>
+          <div className="flex items-center gap-2 text-slate-500">
+            <button className="p-1 hover:text-slate-700 cursor-pointer">
+              <Share2 className="w-4 h-4" />
+            </button>
+          </div>
         </div>
       </div>
 
       {/* Main Scrollable Timeline Content */}
-      <div className="flex-1 overflow-y-auto no-scrollbar p-6 flex flex-col gap-6">
+      <div className="flex-1 overflow-y-auto no-scrollbar p-6 bg-white">
+        <div className="max-w-3xl mx-auto w-full flex flex-col gap-6">
         {/* Summary Card */}
         <div className="bg-slate-50 rounded-2xl p-4 border border-slate-200/80">
           <div className="flex items-center justify-between text-xs mb-1">
@@ -118,28 +121,31 @@ export const VaadaTimelineModal: React.FC<VaadaTimelineModalProps> = ({
             </span>
           </div>
         </div>
+        </div>
       </div>
 
       {/* Bottom Actions */}
-      <div className="p-4 bg-white border-t border-slate-100 shrink-0 flex gap-3">
-        <button
-          onClick={onClose}
-          className="flex-1 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 font-semibold text-xs text-slate-700 transition-colors cursor-pointer active:scale-[0.99]"
-        >
-          Back
-        </button>
-        <button
-          onClick={() => {
-            if (onViewDetails) {
-              onViewDetails(vaada);
-            } else {
-              onClose();
-            }
-          }}
-          className="flex-1 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 font-semibold text-xs text-white transition-all shadow-md shadow-blue-500/20 cursor-pointer active:scale-[0.99]"
-        >
-          {vaada.actionLabel || 'View Details'}
-        </button>
+      <div className="w-full bg-white border-t border-slate-100 shrink-0 p-4">
+        <div className="max-w-3xl mx-auto flex gap-3">
+          <button
+            onClick={onClose}
+            className="flex-1 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 font-semibold text-xs text-slate-700 transition-colors cursor-pointer active:scale-[0.99]"
+          >
+            Back
+          </button>
+          <button
+            onClick={() => {
+              if (onViewDetails) {
+                onViewDetails(vaada);
+              } else {
+                onClose();
+              }
+            }}
+            className="flex-1 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 font-semibold text-xs text-white transition-all shadow-md shadow-blue-500/20 cursor-pointer active:scale-[0.99]"
+          >
+            {vaada.actionLabel || 'View Details'}
+          </button>
+        </div>
       </div>
     </div>
   );

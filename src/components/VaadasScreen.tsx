@@ -269,153 +269,162 @@ export const VaadasScreen: React.FC<VaadasScreenProps> = ({
   return (
     <div className="flex-1 flex flex-col bg-white overflow-hidden select-none animate-in fade-in duration-200 relative">
       {/* Top Header matching Figma strictly */}
-      <div className="px-6 pt-6 pb-3 flex items-center justify-between bg-white z-10">
-        <h1 className="text-[20px] font-bold text-slate-900 tracking-tight leading-snug">
-          Vaadas
-        </h1>
-        <div className="flex items-center gap-3 text-slate-500">
-          {/* Search Button */}
-          <button
-            onClick={() => setShowSearch(!showSearch)}
-            className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
-              showSearch ? 'bg-blue-50 text-blue-600' : 'hover:text-blue-600'
-            }`}
-            aria-label="Search Vaadas"
-          >
-            <Search className="w-[18px] h-[18px]" strokeWidth={2} />
-          </button>
+      <div className="w-full border-b border-slate-100 bg-white z-10">
+        <div className="max-w-4xl mx-auto px-6 pt-6 pb-3 flex items-center justify-between">
+          <h1 className="text-[20px] font-bold text-slate-900 tracking-tight leading-snug">
+            Vaadas
+          </h1>
+          <div className="flex items-center gap-3 text-slate-500">
+            {/* Search Button */}
+            <button
+              onClick={() => setShowSearch(!showSearch)}
+              className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
+                showSearch ? 'bg-blue-50 text-blue-600' : 'hover:text-blue-600'
+              }`}
+              aria-label="Search Vaadas"
+            >
+              <Search className="w-[18px] h-[18px]" strokeWidth={2} />
+            </button>
 
-          {/* Filter Options Button */}
-          <button
-            onClick={() => setShowFilterModal(true)}
-            className={`p-1.5 rounded-lg transition-all cursor-pointer relative ${
-              activeFiltersCount > 0
-                ? 'bg-blue-50 text-blue-600 border border-blue-200'
-                : 'hover:text-blue-600 hover:bg-slate-50'
-            }`}
-            aria-label="Filter Options"
-            title="Filter & Sort Vaadas"
-          >
-            <SlidersHorizontal className="w-[18px] h-[18px]" strokeWidth={2} />
-            {activeFiltersCount > 0 && (
-              <span className="absolute -top-1 -right-1 w-4 h-4 bg-blue-600 text-white text-[9px] font-bold rounded-full flex items-center justify-center shadow-xs">
-                {activeFiltersCount}
-              </span>
-            )}
-          </button>
+            {/* Filter Options Button */}
+            <button
+              onClick={() => setShowFilterModal(true)}
+              className={`p-1.5 rounded-lg transition-all cursor-pointer relative ${
+                activeFiltersCount > 0
+                  ? 'bg-blue-50 text-blue-600 border border-blue-200'
+                  : 'hover:text-blue-600 hover:bg-slate-50'
+              }`}
+              aria-label="Filter Options"
+              title="Filter & Sort Vaadas"
+            >
+              <SlidersHorizontal className="w-[18px] h-[18px]" strokeWidth={2} />
+              {activeFiltersCount > 0 && (
+                <span className="absolute -top-1 -right-1 w-4 h-4 bg-blue-600 text-white text-[9px] font-bold rounded-full flex items-center justify-center shadow-xs">
+                  {activeFiltersCount}
+                </span>
+              )}
+            </button>
+          </div>
         </div>
       </div>
 
       {/* Optional Search Bar */}
       {showSearch && (
-        <div className="px-6 pb-3 pt-1 bg-white animate-in slide-in-from-top-1 duration-150">
-          <div className="relative flex items-center">
-            <input
-              type="text"
-              placeholder="Search by counterparty, category, or ID..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full text-xs bg-slate-100 px-3.5 py-2.5 rounded-xl outline-none focus:ring-2 focus:ring-blue-100 transition-all font-medium text-slate-800 placeholder:text-slate-400 pr-8"
-              autoFocus
-            />
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery('')}
-                className="absolute right-2.5 text-slate-400 hover:text-slate-600 cursor-pointer"
-              >
-                <X className="w-3.5 h-3.5" />
-              </button>
-            )}
+        <div className="w-full bg-white border-b border-slate-100 animate-in slide-in-from-top-1 duration-150">
+          <div className="max-w-4xl mx-auto px-6 pb-3 pt-2">
+            <div className="relative flex items-center">
+              <input
+                type="text"
+                placeholder="Search by counterparty, category, or ID..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full text-xs bg-slate-100 px-3.5 py-2.5 rounded-xl outline-none focus:ring-2 focus:ring-blue-100 transition-all font-medium text-slate-800 placeholder:text-slate-400 pr-8"
+                autoFocus
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-2.5 text-slate-400 hover:text-slate-600 cursor-pointer"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              )}
+            </div>
           </div>
         </div>
       )}
 
       {/* Tabs Row matching Figma strictly */}
-      <div className="border-b border-slate-100 px-6 flex items-center gap-7 text-xs font-semibold select-none bg-white">
-        {tabs.map((tab) => {
-          const isActive = activeTab === tab.label;
-          return (
-            <button
-              key={tab.label}
-              onClick={() => setActiveTab(tab.label)}
-              className={`py-3 relative flex items-center gap-1.5 transition-colors cursor-pointer ${
-                isActive ? 'text-blue-600' : 'text-slate-500 hover:text-slate-800'
-              }`}
-            >
-              <span className="font-semibold text-[13px]">{tab.label}</span>
-              <span
-                className={`text-[10px] font-bold px-1.5 py-0.2 rounded-full ${
-                  isActive ? 'bg-blue-50 text-blue-600' : 'text-slate-400'
+      <div className="w-full border-b border-slate-100 bg-white select-none">
+        <div className="max-w-4xl mx-auto px-6 flex items-center gap-7 text-xs font-semibold">
+          {tabs.map((tab) => {
+            const isActive = activeTab === tab.label;
+            return (
+              <button
+                key={tab.label}
+                onClick={() => setActiveTab(tab.label)}
+                className={`py-3 relative flex items-center gap-1.5 transition-colors cursor-pointer ${
+                  isActive ? 'text-blue-600' : 'text-slate-500 hover:text-slate-800'
                 }`}
               >
-                {tab.count}
-              </span>
-              {isActive && (
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 rounded-t-full transition-all duration-200"></span>
-              )}
-            </button>
-          );
-        })}
+                <span className="font-semibold text-[13px]">{tab.label}</span>
+                <span
+                  className={`text-[10px] font-bold px-1.5 py-0.2 rounded-full ${
+                    isActive ? 'bg-blue-50 text-blue-600' : 'text-slate-400'
+                  }`}
+                >
+                  {tab.count}
+                </span>
+                {isActive && (
+                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 rounded-t-full transition-all duration-200"></span>
+                )}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {/* Active Filter Chips Bar (if filters are active) */}
       {activeFiltersCount > 0 && (
-        <div className="px-6 py-2 bg-slate-50/70 border-b border-slate-100 flex items-center gap-2 overflow-x-auto no-scrollbar animate-in fade-in duration-150">
-          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider shrink-0">
-            Active:
-          </span>
-
-          {selectedCategory !== 'All' && (
-            <span className="inline-flex items-center gap-1 bg-white border border-blue-200 text-blue-700 text-[10px] font-medium px-2 py-0.5 rounded-full shrink-0 shadow-2xs">
-              <span>{selectedCategory}</span>
-              <button
-                onClick={() => setSelectedCategory('All')}
-                className="hover:text-blue-900 cursor-pointer"
-              >
-                <X className="w-2.5 h-2.5" />
-              </button>
+        <div className="w-full bg-slate-50/70 border-b border-slate-100">
+          <div className="max-w-4xl mx-auto px-6 py-2 flex items-center gap-2 overflow-x-auto no-scrollbar animate-in fade-in duration-150">
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider shrink-0">
+              Active:
             </span>
-          )}
 
-          {selectedRole !== 'All' && (
-            <span className="inline-flex items-center gap-1 bg-white border border-blue-200 text-blue-700 text-[10px] font-medium px-2 py-0.5 rounded-full shrink-0 shadow-2xs">
-              <span>{selectedRole === 'owed' ? 'You are Owed' : 'You Owe'}</span>
-              <button
-                onClick={() => setSelectedRole('All')}
-                className="hover:text-blue-900 cursor-pointer"
-              >
-                <X className="w-2.5 h-2.5" />
-              </button>
-            </span>
-          )}
-
-          {selectedSort !== 'default' && (
-            <span className="inline-flex items-center gap-1 bg-white border border-blue-200 text-blue-700 text-[10px] font-medium px-2 py-0.5 rounded-full shrink-0 shadow-2xs">
-              <span>
-                {selectedSort === 'amount_desc'
-                  ? 'Highest Amount'
-                  : 'Lowest Amount'}
+            {selectedCategory !== 'All' && (
+              <span className="inline-flex items-center gap-1 bg-white border border-blue-200 text-blue-700 text-[10px] font-medium px-2 py-0.5 rounded-full shrink-0 shadow-2xs">
+                <span>{selectedCategory}</span>
+                <button
+                  onClick={() => setSelectedCategory('All')}
+                  className="hover:text-blue-900 cursor-pointer"
+                >
+                  <X className="w-2.5 h-2.5" />
+                </button>
               </span>
-              <button
-                onClick={() => setSelectedSort('default')}
-                className="hover:text-blue-900 cursor-pointer"
-              >
-                <X className="w-2.5 h-2.5" />
-              </button>
-            </span>
-          )}
+            )}
 
-          <button
-            onClick={handleResetFilters}
-            className="text-[10px] font-semibold text-slate-500 hover:text-slate-800 underline ml-auto shrink-0 cursor-pointer"
-          >
-            Clear all
-          </button>
+            {selectedRole !== 'All' && (
+              <span className="inline-flex items-center gap-1 bg-white border border-blue-200 text-blue-700 text-[10px] font-medium px-2 py-0.5 rounded-full shrink-0 shadow-2xs">
+                <span>{selectedRole === 'owed' ? 'You are Owed' : 'You Owe'}</span>
+                <button
+                  onClick={() => setSelectedRole('All')}
+                  className="hover:text-blue-900 cursor-pointer"
+                >
+                  <X className="w-2.5 h-2.5" />
+                </button>
+              </span>
+            )}
+
+            {selectedSort !== 'default' && (
+              <span className="inline-flex items-center gap-1 bg-white border border-blue-200 text-blue-700 text-[10px] font-medium px-2 py-0.5 rounded-full shrink-0 shadow-2xs">
+                <span>
+                  {selectedSort === 'amount_desc'
+                    ? 'Highest Amount'
+                    : 'Lowest Amount'}
+                </span>
+                <button
+                  onClick={() => setSelectedSort('default')}
+                  className="hover:text-blue-900 cursor-pointer"
+                >
+                  <X className="w-2.5 h-2.5" />
+                </button>
+              </span>
+            )}
+
+            <button
+              onClick={handleResetFilters}
+              className="text-[10px] font-semibold text-slate-500 hover:text-slate-800 underline ml-auto shrink-0 cursor-pointer"
+            >
+              Clear all
+            </button>
+          </div>
         </div>
       )}
 
       {/* Vaada Cards Scrollable List */}
-      <div className="flex-1 overflow-y-auto no-scrollbar p-5 flex flex-col gap-3.5 bg-white">
+      <div className="flex-1 overflow-y-auto no-scrollbar p-5 bg-white">
+        <div className="max-w-4xl mx-auto w-full flex flex-col gap-3.5">
         {filteredVaadas.map((item) => (
           <div
             key={item.id}
@@ -521,6 +530,7 @@ export const VaadasScreen: React.FC<VaadasScreenProps> = ({
             )}
           </div>
         )}
+        </div>
       </div>
 
       {/* ========================================================= */}

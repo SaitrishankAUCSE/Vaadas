@@ -241,12 +241,12 @@ export const Onboarding: React.FC<OnboardingProps> = ({ onComplete, onSkip }) =>
       </div>
 
       {/* Top Blue Graphic Section */}
-      <div className="h-[290px] w-full shrink-0">
+      <div className="h-[300px] md:h-[380px] w-full shrink-0 bg-[#1d4ed8]">
         {current.renderGraphic()}
       </div>
 
       {/* Bottom White Section - Left-Aligned matching Figma Wireframe 100% */}
-      <div className="flex-1 flex flex-col justify-between px-7 pt-7 pb-6 bg-white">
+      <div className="flex-1 w-full max-w-md mx-auto flex flex-col justify-between px-7 pt-7 pb-8 bg-white">
         <div className="text-left">
           {/* Title - Left aligned */}
           <h1 className="text-[26px] font-bold text-slate-900 tracking-tight leading-tight whitespace-pre-line">

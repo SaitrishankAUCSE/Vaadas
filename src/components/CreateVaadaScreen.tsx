@@ -78,24 +78,26 @@ export const CreateVaadaScreen: React.FC<CreateVaadaScreenProps> = ({ onBack, on
   return (
     <div className="flex-1 flex flex-col bg-white overflow-hidden select-none animate-in fade-in duration-200 justify-between">
       {/* Top Header matching Figma wireframe strictly */}
-      <div className="px-6 pt-6 pb-2 bg-white flex flex-col">
-        {/* < Back button */}
-        <button
-          onClick={onBack}
-          className="flex items-center gap-1.5 text-slate-800 hover:text-blue-600 transition-colors cursor-pointer -ml-1 w-fit py-1"
-        >
-          <ChevronLeft className="w-4 h-4 text-slate-700" strokeWidth={2.5} />
-          <span className="text-xs font-semibold text-slate-700">Back</span>
-        </button>
+      <div className="w-full border-b border-slate-100 bg-white">
+        <div className="max-w-2xl mx-auto px-6 pt-6 pb-4 flex flex-col">
+          {/* < Back button */}
+          <button
+            onClick={onBack}
+            className="flex items-center gap-1.5 text-slate-800 hover:text-blue-600 transition-colors cursor-pointer -ml-1 w-fit py-1"
+          >
+            <ChevronLeft className="w-4 h-4 text-slate-700" strokeWidth={2.5} />
+            <span className="text-xs font-semibold text-slate-700">Back</span>
+          </button>
 
-        {/* Heading */}
-        <h1 className="text-[20px] font-bold text-slate-900 tracking-tight leading-snug mt-3">
-          What kind of Vaada are you creating?
-        </h1>
+          {/* Heading */}
+          <h1 className="text-[20px] font-bold text-slate-900 tracking-tight leading-snug mt-3">
+            What kind of Vaada are you creating?
+          </h1>
+        </div>
       </div>
 
       {/* 4 Category Selection Cards */}
-      <div className="px-6 pt-5 pb-2 flex flex-col gap-3.5 flex-1">
+      <div className="w-full max-w-2xl mx-auto px-6 pt-6 pb-2 flex flex-col gap-3.5 flex-1">
         {categories.map((cat) => {
           const isSelected = selectedCategory === cat.id;
           return (
@@ -124,18 +126,20 @@ export const CreateVaadaScreen: React.FC<CreateVaadaScreenProps> = ({ onBack, on
       </div>
 
       {/* Bottom Continue Action Button strictly matching Figma disabled/enabled state */}
-      <div className="px-6 pb-7 pt-2 bg-white w-full">
-        <button
-          onClick={handleContinue}
-          disabled={!selectedCategory}
-          className={`w-full h-[48px] rounded-[16px] font-medium text-xs transition-all duration-200 flex items-center justify-center select-none ${
-            selectedCategory
-              ? 'bg-blue-600 hover:bg-blue-700 active:scale-[0.99] text-white shadow-md shadow-blue-500/20 cursor-pointer font-semibold'
-              : 'bg-[#f1f3f6] text-[#94a3b8] cursor-not-allowed'
-          }`}
-        >
-          Continue
-        </button>
+      <div className="w-full border-t border-slate-100 bg-white">
+        <div className="max-w-2xl mx-auto px-6 pb-7 pt-4">
+          <button
+            onClick={handleContinue}
+            disabled={!selectedCategory}
+            className={`w-full h-[48px] rounded-[16px] font-medium text-xs transition-all duration-200 flex items-center justify-center select-none ${
+              selectedCategory
+                ? 'bg-blue-600 hover:bg-blue-700 active:scale-[0.99] text-white shadow-md shadow-blue-500/20 cursor-pointer font-semibold'
+                : 'bg-[#f1f3f6] text-[#94a3b8] cursor-not-allowed'
+            }`}
+          >
+            Continue
+          </button>
+        </div>
       </div>
     </div>
   );

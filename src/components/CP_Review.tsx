@@ -20,18 +20,20 @@ export const CP_Review: React.FC<CPReviewProps> = ({ vaada, onBack, onAccept, on
   return (
     <div className="flex-1 flex flex-col bg-slate-50 overflow-y-auto no-scrollbar pb-8 select-none animate-in fade-in duration-200">
       {/* Header */}
-      <div className="bg-white px-5 pt-4 pb-3 border-b border-slate-100 flex items-center justify-between sticky top-0 z-20">
-        <button onClick={onBack} className="p-1 -ml-1 text-slate-700 hover:text-slate-900 transition-colors">
-          <ChevronLeft className="w-5 h-5" />
-        </button>
-        <div className="text-center">
-          <h1 className="text-sm font-bold text-slate-900">Review Vaada</h1>
-          <p className="text-[10px] text-slate-400">Counterparty Acceptance</p>
+      <div className="w-full bg-white border-b border-slate-100 sticky top-0 z-20">
+        <div className="max-w-3xl mx-auto px-5 pt-4 pb-3 flex items-center justify-between">
+          <button onClick={onBack} className="p-1 -ml-1 text-slate-700 hover:text-slate-900 transition-colors cursor-pointer">
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <div className="text-center">
+            <h1 className="text-sm font-bold text-slate-900">Review Vaada</h1>
+            <p className="text-[10px] text-slate-400">Counterparty Acceptance</p>
+          </div>
+          <div className="w-6"></div>
         </div>
-        <div className="w-6"></div>
       </div>
 
-      <div className="p-4 flex flex-col gap-4">
+      <div className="w-full max-w-3xl mx-auto p-4 flex flex-col gap-4 flex-1">
         {/* Vaada ID Strip */}
         <div className="bg-white rounded-xl p-3 border border-slate-100 flex items-center justify-between shadow-2xs">
           <span className="text-[11px] font-mono font-medium text-slate-500">ID: {vaada.vaadaId}</span>

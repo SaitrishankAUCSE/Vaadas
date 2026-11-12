@@ -20,8 +20,8 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onContinue }) => {
 
   return (
     <div className="flex-1 flex flex-col bg-white overflow-hidden animate-in fade-in duration-300 ease-out select-none relative">
-      {/* Top Header Block (Clean Solid Institutional Blue) */}
-      <div className="bg-[#1d4ed8] h-[255px] w-full flex flex-col items-center justify-center text-white shrink-0 px-6 pt-2 select-none">
+      {/* Top Header Block (Clean Solid Institutional Blue) spanning full width */}
+      <div className="bg-[#1d4ed8] py-14 md:py-20 w-full flex flex-col items-center justify-center text-white shrink-0 px-6 select-none">
         {/* Distinctive Institutional Brand Monogram / Seal */}
         <div className="w-[66px] h-[66px] rounded-[20px] bg-white text-blue-800 flex items-center justify-center shadow-[0_8px_24px_rgba(0,0,0,0.18)] mb-4 border border-white/40">
           <svg
@@ -50,18 +50,18 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onContinue }) => {
         </div>
 
         {/* Noted Title */}
-        <h1 className="text-[32px] font-extrabold text-white tracking-tight leading-none">
+        <h1 className="text-[32px] md:text-[38px] font-extrabold text-white tracking-tight leading-none">
           Noted
         </h1>
 
         {/* Subtitle */}
-        <p className="text-[11px] uppercase font-bold tracking-[0.2em] text-white/90 mt-2.5">
+        <p className="text-[11px] md:text-[12px] uppercase font-bold tracking-[0.2em] text-white/90 mt-2.5">
           Mutual Agreements • Verified Proof
         </p>
       </div>
 
-      {/* Main Content Area - exact same text, font, placing, placement */}
-      <div className="flex-1 flex flex-col justify-between px-6 pt-8 pb-6 bg-white">
+      {/* Main Content Area - centered within full width container */}
+      <div className="flex-1 w-full flex flex-col justify-between max-w-md mx-auto px-6 pt-8 pb-10 bg-white">
         <div>
           {/* Welcome Text */}
           <h2 className="text-[21px] font-bold text-slate-900 tracking-tight leading-snug">

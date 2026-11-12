@@ -16,8 +16,9 @@ export const BottomNav: React.FC<BottomNavProps> = ({
   badgeCount = 0,
 }) => {
   return (
-    <div className="h-16 bg-white border-t border-slate-100 flex items-center justify-around px-2 relative shrink-0 select-none z-30">
-      {/* Home */}
+    <div className="h-16 bg-white border-t border-slate-100 w-full shrink-0 select-none z-30">
+      <div className="max-w-xl mx-auto h-full flex items-center justify-around px-2 relative">
+        {/* Home */}
       <button
         onClick={() => onNavigate('home')}
         className={`flex flex-col items-center justify-center gap-1 flex-1 py-1 transition-colors cursor-pointer ${
@@ -78,6 +79,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({
         <User className={`w-5 h-5 ${currentScreen === 'profile' ? 'stroke-[2.5]' : 'stroke-[1.8]'}`} />
         <span className="text-[10px]">Profile</span>
       </button>
+      </div>
     </div>
   );
 };
