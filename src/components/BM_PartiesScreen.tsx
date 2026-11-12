@@ -10,8 +10,8 @@ export const BM_PartiesScreen: React.FC<BMPartiesScreenProps> = ({ onBack, onCon
   const [selectedRole, setSelectedRole] = useState<'lender' | 'borrower' | null>('borrower');
   const [method, setMethod] = useState<'picker' | 'search' | 'manual'>('manual');
   const [searchQuery, setSearchQuery] = useState('');
-  const [manualName, setManualName] = useState('ram');
-  const [manualPhone, setManualPhone] = useState('999999999');
+  const [manualName, setManualName] = useState('bannu');
+  const [manualPhone, setManualPhone] = useState('8179300688');
   const [selectedUser, setSelectedUser] = useState<string | null>(null);
 
   // Mock users for search suggestions
@@ -118,7 +118,7 @@ export const BM_PartiesScreen: React.FC<BMPartiesScreenProps> = ({ onBack, onCon
 
         {/* "Who is the other person?" Section (Animates in once a role is selected) */}
         {selectedRole !== null && (
-          <div className="px-6 pt-6 flex flex-col gap-3 animate-in fade-in slide-in-from-top-2 duration-200">
+          <div className="w-full max-w-2xl mx-auto px-6 pt-6 pb-12 flex flex-col gap-3 animate-in fade-in slide-in-from-top-2 duration-200">
             <h2 className="text-sm font-bold text-slate-900 leading-tight">
               Who is the other person?
             </h2>
@@ -250,6 +250,34 @@ export const BM_PartiesScreen: React.FC<BMPartiesScreenProps> = ({ onBack, onCon
                     >
                       <span className="text-[10px] font-bold tracking-tight">•••</span>
                     </button>
+                  </div>
+                </div>
+
+                {/* Participants Box matching Figma Image 1 strictly */}
+                <div className="pt-2 border-t border-slate-100 flex flex-col gap-2">
+                  <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">
+                    Participants
+                  </span>
+                  <div className="grid grid-cols-2 gap-3">
+                    {/* You */}
+                    <div className="bg-blue-50/70 border border-blue-200/80 rounded-xl p-3 flex flex-col">
+                      <span className="text-[10px] text-slate-400 font-medium">You</span>
+                      <span className="text-xs font-bold text-slate-900 mt-0.5">Appi</span>
+                      <span className="text-[11px] font-semibold text-blue-600 mt-0.5">
+                        {selectedRole === 'borrower' ? 'Borrower' : 'Lender'}
+                      </span>
+                    </div>
+
+                    {/* Counterparty */}
+                    <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-3 flex flex-col">
+                      <span className="text-[10px] text-slate-400 font-medium">Counterparty</span>
+                      <span className="text-xs font-bold text-slate-900 mt-0.5 truncate">
+                        {manualName.trim() || 'Counterparty'}
+                      </span>
+                      <span className="text-[11px] font-semibold text-slate-600 mt-0.5">
+                        {selectedRole === 'borrower' ? 'Lender' : 'Borrower'}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>

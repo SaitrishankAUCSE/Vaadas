@@ -46,6 +46,7 @@ export const App: React.FC = () => {
   const [vaadas, setVaadas] = useState<VaadaItem[]>(initialVaadas);
   const [selectedVaadaForTimeline, setSelectedVaadaForTimeline] = useState<VaadaItem | null>(null);
   const [activeVaada, setActiveVaada] = useState<VaadaItem>(initialVaadas[0]);
+  const [vaadaViewRole, setVaadaViewRole] = useState<'borrower' | 'lender'>('borrower');
   const [vaadasInitialFilter, setVaadasInitialFilter] = useState<string>('All');
 
   // Pending Actions state (auto-dismisses the Action Required sections once completed)
@@ -127,9 +128,10 @@ export const App: React.FC = () => {
     setCurrentScreen('bm-review-repayment');
   };
 
-  const handleOpenActiveVaada = (vaada: VaadaItem) => {
+  const handleOpenActiveVaada = (vaada: VaadaItem, overrideRole?: 'borrower' | 'lender') => {
     setActiveVaada(vaada);
     setPreviousScreen(currentScreen);
+    setVaadaViewRole(overrideRole || (vaada.role === 'You borrowed' ? 'borrower' : 'lender'));
     setCurrentScreen('bm-active-overview');
   };
 
@@ -137,6 +139,7 @@ export const App: React.FC = () => {
     setSelectedVaadaForTimeline(null);
     setActiveVaada(vaada);
     setPreviousScreen(currentScreen);
+    setVaadaViewRole(vaada.role === 'You borrowed' ? 'borrower' : 'lender');
     if (vaada.status === 'pending') {
       setCurrentScreen('cp-review');
     } else if (vaada.status === 'repayment_pending') {
@@ -613,7 +616,7 @@ export const App: React.FC = () => {
         {currentScreen === 'bm-active-overview' && (
           <BM_ActiveOverview
             vaada={activeVaada}
-            role={activeVaada.role === 'You borrowed' ? 'borrower' : 'lender'}
+            role={vaadaViewRole}
             onBack={handleBackToPrevious}
             onRecordRepayment={handleStartRecordRepayment}
             onViewTimeline={() => setSelectedVaadaForTimeline(activeVaada)}

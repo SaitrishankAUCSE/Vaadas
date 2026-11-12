@@ -53,7 +53,7 @@ export const BM_ReviewCreateScreen: React.FC<BMReviewCreateProps> = ({
         </div>
 
         {/* Content Container */}
-        <div className="w-full max-w-2xl mx-auto px-6 pt-5 flex flex-col gap-4">
+        <div className="w-full max-w-2xl mx-auto px-6 pt-5 pb-12 flex flex-col gap-4">
           {/* Statutory Seal Banner */}
           <div className="bg-blue-50/80 border border-blue-200/90 rounded-2xl p-4 flex items-center gap-3 shadow-2xs">
             <div className="w-9 h-9 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0">
@@ -181,3 +181,4 @@ export const BM_ReviewCreateScreen: React.FC<BMReviewCreateProps> = ({
     </div>
   );
 };
+

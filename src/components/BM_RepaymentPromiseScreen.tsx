@@ -24,7 +24,7 @@ export const BM_RepaymentPromiseScreen: React.FC<BMRepaymentPromiseProps> = ({
   const [selectedDuration, setSelectedDuration] = useState<number>(15);
   const [isCustomDuration, setIsCustomDuration] = useState<boolean>(false);
   const [customDate, setCustomDate] = useState<string>('2026-11-27');
-  const [interestApplies, setInterestApplies] = useState<boolean>(true);
+  const [interestApplies, setInterestApplies] = useState<boolean>(false);
   const [interestType, setInterestType] = useState<string>('Monthly %');
   const [interestRate, setInterestRate] = useState<number>(2);
 
@@ -95,7 +95,7 @@ export const BM_RepaymentPromiseScreen: React.FC<BMRepaymentPromiseProps> = ({
         </div>
 
         {/* Content Area */}
-        <div className="w-full max-w-2xl mx-auto px-6 pt-5 flex flex-col gap-6">
+        <div className="w-full max-w-2xl mx-auto px-6 pt-5 pb-12 flex flex-col gap-6">
           {/* Repayment Amount Section matching Screenshot 4 */}
           <div className="flex flex-col gap-2">
             <label className="block text-[11px] font-semibold text-slate-600">
@@ -278,3 +278,4 @@ export const BM_RepaymentPromiseScreen: React.FC<BMRepaymentPromiseProps> = ({
     </div>
   );
 };
+
