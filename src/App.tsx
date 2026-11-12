@@ -14,6 +14,9 @@ import { DesktopNavbar } from './components/DesktopNavbar';
 import { VaadaTimelineModal } from './components/VaadaTimelineModal';
 import { CreateVaadaScreen } from './components/CreateVaadaScreen';
 import { BM_PartiesScreen } from './components/BM_PartiesScreen';
+import { BM_LoanDetailsScreen } from './components/BM_LoanDetailsScreen';
+import { BM_RepaymentPromiseScreen } from './components/BM_RepaymentPromiseScreen';
+import { BM_ReviewCreateScreen } from './components/BM_ReviewCreateScreen';
 import { PP_PartiesScreen } from './components/PP_PartiesScreen';
 import { AG_PartiesScreen } from './components/AG_PartiesScreen';
 import { SA_PartiesScreen } from './components/SA_PartiesScreen';
@@ -48,6 +51,41 @@ export const App: React.FC = () => {
   // Pending Actions state (auto-dismisses the Action Required sections once completed)
   const [pendingCounterpartyReview, setPendingCounterpartyReview] = useState<boolean>(true);
   const [pendingRepaymentReview, setPendingRepaymentReview] = useState<boolean>(true);
+
+  // Multi-step Create Vaada Draft State
+  const [createDraft, setCreateDraft] = useState<{
+    category: VaadaCategory;
+    role: 'lender' | 'borrower';
+    counterparty: string;
+    phone?: string;
+    amount: number;
+    dateGiven: string;
+    paymentMethod: 'Cash' | 'UPI' | 'Bank Transfer' | 'Cheque';
+    transactionId?: string;
+    proofAdded: boolean;
+    repaymentAmount: number;
+    durationDays: number;
+    dueDate: string;
+    interestApplies: boolean;
+    interestType?: string;
+    interestRate?: number;
+  }>({
+    category: 'Borrowed Money',
+    role: 'borrower',
+    counterparty: 'ram',
+    phone: '999999999',
+    amount: 100,
+    dateGiven: 'Nov 12, 2026',
+    paymentMethod: 'UPI',
+    transactionId: '4567y',
+    proofAdded: true,
+    repaymentAmount: 100,
+    durationDays: 15,
+    dueDate: 'November 27th, 2026',
+    interestApplies: true,
+    interestType: 'Monthly %',
+    interestRate: 2,
+  });
 
   // Transitions
   const handleSplashTransition = () => {
@@ -311,29 +349,79 @@ export const App: React.FC = () => {
     counterparty: string;
     phone?: string;
   }) => {
+    setCreateDraft((prev) => ({
+      ...prev,
+      role,
+      counterparty,
+      phone,
+    }));
+    setPreviousScreen(currentScreen);
+    setCurrentScreen('bm-loan-details');
+  };
+
+  const handleLoanDetailsContinue = (data: {
+    amount: number;
+    dateGiven: string;
+    paymentMethod: 'Cash' | 'UPI' | 'Bank Transfer' | 'Cheque';
+    transactionId?: string;
+    proofAdded: boolean;
+  }) => {
+    setCreateDraft((prev) => ({
+      ...prev,
+      ...data,
+      repaymentAmount: data.amount,
+    }));
+    setPreviousScreen(currentScreen);
+    setCurrentScreen('bm-repayment-promise');
+  };
+
+  const handleRepaymentPromiseContinue = (data: {
+    repaymentAmount: number;
+    durationDays: number;
+    dueDate: string;
+    interestApplies: boolean;
+    interestType?: string;
+    interestRate?: number;
+  }) => {
+    setCreateDraft((prev) => ({
+      ...prev,
+      ...data,
+    }));
+    setPreviousScreen(currentScreen);
+    setCurrentScreen('bm-review-create');
+  };
+
+  const handleCreateVaadaFinal = () => {
     const newVaada: VaadaItem = {
       id: Date.now().toString(),
-      category: 'Borrowed Money',
-      counterparty,
-      amount: 57500,
-      dueDate: 'Jul 27, 2026',
-      role: role === 'lender' ? 'You lent' : 'You borrowed',
-      status: 'active',
-      statusLabel: 'Active',
-      statusColor: 'green',
-      actionLabel: 'View',
+      category: createDraft.category,
+      counterparty: createDraft.counterparty,
+      amount: createDraft.repaymentAmount,
+      dueDate: createDraft.dueDate,
+      role: createDraft.role === 'lender' ? 'You lent' : 'You borrowed',
+      status: 'pending',
+      statusLabel: 'Pending Acceptance',
+      statusColor: 'amber',
+      actionLabel: 'Review',
       actionVariant: 'primary',
-      vaadaId: `260531-${Math.floor(10 + Math.random() * 90)}-0001`,
+      vaadaId: `261112-${Math.floor(10 + Math.random() * 90)}-000${Math.floor(1 + Math.random() * 9)}`,
+      paymentMethod: createDraft.paymentMethod,
+      transactionId: createDraft.transactionId,
+      proofAdded: createDraft.proofAdded,
+      repaymentAmount: createDraft.repaymentAmount,
+      durationDays: createDraft.durationDays,
+      interestApplies: createDraft.interestApplies,
+      interestType: createDraft.interestType,
+      interestRate: createDraft.interestRate,
+      counterpartyPhone: createDraft.phone,
       timeline: [
         { title: 'Vaada Created', timestamp: 'Just now', completed: true },
-        { title: 'Mutual Acceptance', timestamp: 'Just now', completed: true },
-        { title: 'Vaada Activated', timestamp: 'Just now', completed: true },
-        { title: 'Active Commitment', timestamp: 'Due Jul 27, 2026', completed: false, active: true },
+        { title: 'Awaiting Counterparty Review', timestamp: `${createDraft.counterparty} notified`, completed: false, active: true },
       ],
     };
     setVaadas([newVaada, ...vaadas]);
     setActiveVaada(newVaada);
-    setCurrentScreen('bm-active-overview');
+    setCurrentScreen('vaadas');
   };
 
   const isAuthScreen = ['splash', 'onboarding', 'login', 'otp'].includes(currentScreen);
@@ -451,11 +539,39 @@ export const App: React.FC = () => {
           />
         )}
 
-        {/* Borrowed Money - Parties Screen */}
+        {/* Borrowed Money - Parties Screen (Step 2) */}
         {currentScreen === 'bm-parties' && (
           <BM_PartiesScreen
             onBack={() => setCurrentScreen('create-vaada')}
             onContinue={handlePartiesContinue}
+          />
+        )}
+
+        {/* Borrowed Money - Loan Details Screen (Step 3) */}
+        {currentScreen === 'bm-loan-details' && (
+          <BM_LoanDetailsScreen
+            initialAmount={createDraft.amount}
+            initialDate={createDraft.dateGiven}
+            onBack={() => setCurrentScreen('bm-parties')}
+            onContinue={handleLoanDetailsContinue}
+          />
+        )}
+
+        {/* Borrowed Money - Repayment Promise Screen (Step 4) */}
+        {currentScreen === 'bm-repayment-promise' && (
+          <BM_RepaymentPromiseScreen
+            principalAmount={createDraft.amount}
+            onBack={() => setCurrentScreen('bm-loan-details')}
+            onContinue={handleRepaymentPromiseContinue}
+          />
+        )}
+
+        {/* Borrowed Money - Review & Create Screen (Step 5) */}
+        {currentScreen === 'bm-review-create' && (
+          <BM_ReviewCreateScreen
+            data={createDraft}
+            onBack={() => setCurrentScreen('bm-repayment-promise')}
+            onCreate={handleCreateVaadaFinal}
           />
         )}
 

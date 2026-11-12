@@ -152,3 +152,4 @@ export const DesktopNavbar: React.FC<DesktopNavbarProps> = ({
     </header>
   );
 };
+

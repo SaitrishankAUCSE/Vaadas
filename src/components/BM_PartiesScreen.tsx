@@ -7,11 +7,11 @@ interface BMPartiesScreenProps {
 }
 
 export const BM_PartiesScreen: React.FC<BMPartiesScreenProps> = ({ onBack, onContinue }) => {
-  const [selectedRole, setSelectedRole] = useState<'lender' | 'borrower' | null>(null);
-  const [method, setMethod] = useState<'picker' | 'search' | 'manual'>('picker');
+  const [selectedRole, setSelectedRole] = useState<'lender' | 'borrower' | null>('borrower');
+  const [method, setMethod] = useState<'picker' | 'search' | 'manual'>('manual');
   const [searchQuery, setSearchQuery] = useState('');
-  const [manualName, setManualName] = useState('');
-  const [manualPhone, setManualPhone] = useState('');
+  const [manualName, setManualName] = useState('ram');
+  const [manualPhone, setManualPhone] = useState('999999999');
   const [selectedUser, setSelectedUser] = useState<string | null>(null);
 
   // Mock users for search suggestions
@@ -234,14 +234,23 @@ export const BM_PartiesScreen: React.FC<BMPartiesScreenProps> = ({ onBack, onCon
                   <label className="block text-[11px] font-medium text-slate-500 mb-1">
                     Mobile Number
                   </label>
-                  <input
-                    type="tel"
-                    inputMode="numeric"
-                    placeholder="Enter mobile number"
-                    value={manualPhone}
-                    onChange={(e) => setManualPhone(e.target.value.replace(/\D/g, ''))}
-                    className="w-full text-xs font-normal px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100 transition-all"
-                  />
+                  <div className="relative flex items-center">
+                    <input
+                      type="tel"
+                      inputMode="numeric"
+                      placeholder="Enter mobile number"
+                      value={manualPhone}
+                      onChange={(e) => setManualPhone(e.target.value.replace(/\D/g, ''))}
+                      className="w-full text-xs font-normal px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100 transition-all pr-10"
+                    />
+                    <button
+                      type="button"
+                      title="Select from contacts"
+                      className="absolute right-2.5 w-6 h-6 rounded-md bg-rose-500 hover:bg-rose-600 text-white flex items-center justify-center transition-colors cursor-pointer shadow-3xs"
+                    >
+                      <span className="text-[10px] font-bold tracking-tight">•••</span>
+                    </button>
+                  </div>
                 </div>
               </div>
             )}

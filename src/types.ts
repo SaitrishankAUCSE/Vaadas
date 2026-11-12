@@ -10,6 +10,9 @@ export type ScreenType =
   | 'edit-profile'
   | 'create-vaada'
   | 'bm-parties'
+  | 'bm-loan-details'
+  | 'bm-repayment-promise'
+  | 'bm-review-create'
   | 'pp-parties'
   | 'ag-parties'
   | 'sa-parties'
@@ -58,4 +61,13 @@ export interface VaadaItem {
   vaadaId: string;
   reviewBefore?: string;
   timeline?: TimelineEvent[];
+  paymentMethod?: 'Cash' | 'UPI' | 'Bank Transfer' | 'Cheque';
+  transactionId?: string;
+  proofAdded?: boolean;
+  repaymentAmount?: number;
+  durationDays?: number;
+  interestApplies?: boolean;
+  interestType?: string;
+  interestRate?: number;
+  counterpartyPhone?: string;
 }
