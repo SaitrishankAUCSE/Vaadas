@@ -68,6 +68,8 @@ npm run preview
 
 ## 🌐 Deployment
 
+Live Production App: **[https://vaadas.vercel.app](https://vaadas.vercel.app)**
+
 Configured for seamless deployment on [Vercel](https://vercel.com/) with SPA rewrite rules enabled in `vercel.json`.
 
 ```bash
